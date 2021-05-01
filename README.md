@@ -1,6 +1,6 @@
 # Lobe
 
-![Lobe Logo](logo-with-text.svg)
+![Lobe Logo](logo-with-text.svg)  
 This is a Home Assistant custom component for [Lobe](lobe.ai). Lobe is an AI tool that can classify images.
 This component lets you easily use an exported model along with another server to classify a camera entity's feed with it.
 
