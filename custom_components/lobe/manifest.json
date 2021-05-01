@@ -1,0 +1,10 @@
+{
+  "domain": "lobe",
+  "name": "Lobe",
+  "documentation": "",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": ["requests", "pillow"],
+  "iot_class": "calculated",
+  "version": "0.0.3"
+}
