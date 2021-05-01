@@ -13,6 +13,7 @@ Use HACS for the integration. You'll also need a seperate server. Steps to insta
 - Export a Tensorflow Lite model into a folder on the server.
 - Copy over [app.py](app.py) and change the folder location.
 - Run app.py.
+- You'll probably want to [make it run on start](https://stackoverflow.com/questions/57031864/running-flask-app-automatically-after-boot-does-not-work-correctly).
 
 # Configuration
 
