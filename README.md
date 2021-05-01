@@ -25,6 +25,7 @@ image_processing:
     entity_id: camera.front_door_livestream # Camera entity ID
     name: "Front Door Status" # Optional; Custom name
     server: "http://lobeserver.local:5623" # Server address
+    scan_interval: 2 # Optional; How often to update
 ```
 
 It will produce an entity something like this:
