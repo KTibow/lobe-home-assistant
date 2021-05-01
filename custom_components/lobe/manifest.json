@@ -1,7 +1,8 @@
 {
   "domain": "lobe",
   "name": "Lobe",
-  "documentation": "",
+  "documentation": "https://github.com/KTibow/lobe-home-assistant",
+  "issue_tracker": "https://github.com/KTibow/lobe-home-assistant/issues",
   "dependencies": [],
   "codeowners": [],
   "requirements": ["requests", "pillow"],
