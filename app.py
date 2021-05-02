@@ -1,9 +1,10 @@
+"""Lobe Flask server."""
 import io
 from base64 import b64decode
 
 from flask import Flask, request
 from lobe import ImageModel
-from PIL import Image, ImageFile
+from PIL import Image
 
 app = Flask(__name__)
 model = ImageModel.load("/home/pi/model/")
@@ -11,6 +12,7 @@ model = ImageModel.load("/home/pi/model/")
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    """Parse image, predict what it is, and return prediction."""
     img = request.get_json(force=True)
     img = img.get("image")
     image_object = bytearray(b64decode(img))

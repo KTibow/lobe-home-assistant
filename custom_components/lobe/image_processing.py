@@ -14,7 +14,7 @@ from homeassistant.components.image_processing import (
     ImageProcessingEntity,
 )
 from homeassistant.core import split_entity_id
-import homeassistant.helpers.config_validation as cv
+from homeassistant.helpers import config_validation as cv
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -52,19 +52,19 @@ class LobeImageProcessor(ImageProcessingEntity):
         if name:
             self._name = name
         else:
-            self._name = f"Lobe {split_entity_id(camera_entity)[1]}"
+            self._name = "Lobe " + split_entity_id(camera_entity)[1]
         self._server = server
         self._prediction = ""
         self._matches = []
 
     @property
     def camera_entity(self):
-        """Return camera entity id from process pictures."""
+        """Return the original camera entity id."""
         return self._camera_entity
 
     @property
     def name(self):
-        """Return the name of the image processor."""
+        """Return the friendly name."""
         return self._name
 
     @property
@@ -74,10 +74,11 @@ class LobeImageProcessor(ImageProcessingEntity):
 
     @property
     def extra_state_attributes(self):
-        """Return device specific state attributes."""
+        """Return all matches with confidence."""
         return {ATTR_MATCHES: self._matches}
 
     def process_image(self, image):
+        """Ask server to process image and parse response."""
         encoded_image = base64.b64encode(image)
         try:
             response = requests.post(
