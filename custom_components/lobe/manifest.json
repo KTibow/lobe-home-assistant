@@ -5,7 +5,7 @@
   "issue_tracker": "https://github.com/KTibow/lobe-home-assistant/issues",
   "dependencies": [],
   "codeowners": [],
-  "requirements": ["requests", "pillow"],
+  "requirements": ["requests", "pillow", "iteround"],
   "iot_class": "calculated",
   "version": "0.1.0"
 }
