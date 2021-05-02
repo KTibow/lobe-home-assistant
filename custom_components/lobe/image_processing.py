@@ -3,6 +3,7 @@ from datetime import timedelta
 import logging
 import base64
 import requests
+import iteround
 
 import voluptuous as vol
 
@@ -53,7 +54,7 @@ class LobeImageProcessor(ImageProcessingEntity):
         else:
             self._name = f"Lobe {split_entity_id(camera_entity)[1]}"
         self._server = server
-        self._result = ""
+        self._prediction = ""
         self._matches = []
 
     @property
@@ -69,7 +70,7 @@ class LobeImageProcessor(ImageProcessingEntity):
     @property
     def state(self):
         """Return the state of the entity."""
-        return self._result
+        return self._prediction
 
     @property
     def extra_state_attributes(self):
@@ -91,7 +92,7 @@ class LobeImageProcessor(ImageProcessingEntity):
         ) as exception:
             _LOGGER.warning("Could not connect to prediction server due to %s", exception)
             return
-        self._result = response["Prediction"]
-        self._matches = {}
-        for label, confidence in response["Labels"]:
-            self._matches[label] = round(confidence * 100, 2)
+        self._prediction = response["Prediction"]
+        labels = dict(response["Labels"])
+        rounded_values = iteround.saferound(labels.values(), 2)
+        self._matches = dict(zip(labels.keys(), rounded_values))
